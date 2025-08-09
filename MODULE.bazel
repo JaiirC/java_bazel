@@ -1,0 +1,28 @@
+module(
+    name = "proyecto_bazel",
+    version = "1.0",
+    compatibility_level = 1,
+)
+
+# Reglas de Java
+bazel_dep(name = "rules_java", version = "8.12.0")
+
+# Reglas para dependencias Maven
+bazel_dep(name = "rules_jvm_external", version = "6.3")
+
+# Activar extensión para Maven
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+
+# Instalar dependencias de Maven
+maven.install(
+    artifacts = [
+        "junit:junit:4.13.2",  # JUnit 4
+        "org.hamcrest:hamcrest-core:1.3",  # Necesario para assertThat, etc.
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+)
+
+# Hacer visible el repositorio @maven
+use_repo(maven, "maven")
