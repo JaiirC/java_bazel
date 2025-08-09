@@ -22,3 +22,16 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+# Ignorar archivos generados por Bazel
+bazel-bin/
+bazel-out/
+bazel-testlogs/
+
+# Ignorar archivos de build Java
+*.class
+*.jar
+*.exe
+
+# Ignorar carpetas de dependencias y temporales
+target/
+out/
